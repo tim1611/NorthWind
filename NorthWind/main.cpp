@@ -11,7 +11,12 @@ int main()
     Vector2 mapPos{};
     float speed{4.0};
 
-    SetTargetFPS(60);
+    Texture2D knight = LoadTexture("characters/Erland.png");
+    Vector2 knightPos
+    {
+        static_cast<float>(windowWidth)/2.0f - 4.0f * (0.5f * (static_cast<float>(knight.width)/8.0f)),
+        static_cast<float>(windowHeight)/2.0f - 4.0f * (0.5f * static_cast<float>(knight.height)/4.0f)
+    };
 
     while(!WindowShouldClose())
     {
@@ -45,8 +50,14 @@ int main()
             mapPos = Vector2Subtract(mapPos, Vector2Scale(Vector2Normalize(direction), speed));
         }
 
+        // draw the map
         DrawTextureEx(map, mapPos, 0.0f, 4.0f, WHITE);
         
+        //draw the character
+        Rectangle source{0.f, 0.f, static_cast<float>(knight.width)/8.f, static_cast<float>(knight.height)/4.0f};
+        Rectangle dest{knightPos.x, knightPos.y, 4.0f * static_cast<float>(knight.width)/8.0f, 4.0f * static_cast<float>(knight.height)/4.0f};
+        DrawTexturePro(knight, source, dest, Vector2{}, 0.f, WHITE);
+
         EndDrawing();
     }
     CloseWindow();
