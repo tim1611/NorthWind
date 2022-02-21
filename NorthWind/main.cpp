@@ -1,5 +1,6 @@
 #include "raylib.h"
 #include "raymath.h"
+#include "GameAssets.h"
 
 int main()
 {
@@ -7,17 +8,19 @@ int main()
     const int windowHeight{800};
     InitWindow(windowWidth, windowHeight, "NorthWind");
 
-    Texture2D map = LoadTexture("nature_tileset/WorldMap.png");
+    Texture2D  map = World::GameAssets::GetTexture("WorldMap");
     Vector2 mapPos{};
     float speed{4.0};
 
-    Texture2D knight = LoadTexture("characters/Erland.png");
+    Texture2D knight = World::GameAssets::GetTexture("Erland");
     Vector2 knightPos
     {
         static_cast<float>(windowWidth)/2.0f - 4.0f * (0.5f * (static_cast<float>(knight.width)/8.0f)),
         static_cast<float>(windowHeight)/2.0f - 4.0f * (0.5f * static_cast<float>(knight.height)/4.0f)
     };
 
+    SetTargetFPS(60);
+    
     while(!WindowShouldClose())
     {
         BeginDrawing();

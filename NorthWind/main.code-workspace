@@ -51,6 +51,14 @@
 			"streambuf": "cpp",
 			"cinttypes": "cpp",
 			"typeinfo": "cpp"
-		}
+		},
+		"files.exclude": {
+            "**/*.dll": true,
+			"**/*.tsx": true,
+			"**/*.tmx": true,
+			"**/*.vscode": true,
+			"Makefile": true,
+			"main.code-workspace": true
+        }
 	}
 }
